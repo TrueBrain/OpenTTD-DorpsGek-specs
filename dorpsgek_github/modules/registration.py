@@ -1,7 +1,12 @@
-from dorpsgek_github.github import (
+from dorpsgek_github.processes import runner
+from dorpsgek_github.processes.github import (
     add_installation,
     remove_installation,
     router as github,
+)
+from dorpsgek_github.processes.runner import (
+    add_runner,
+    remove_runner,
 )
 
 
@@ -27,3 +32,15 @@ async def installation_repositories_removed(event, github_api):
     # Placeholder to have all relevant endpoints already defined
     # Currently we don't track the exact repository we have access to, so no need to do anything.
     pass
+
+
+@runner.register("register")
+async def register(event, runner_ws):
+    add_runner(runner_ws, event.data["environment"])
+    await runner_ws.send_event("registered")
+
+
+@runner.register("close")
+async def close(event, runner_ws):
+    remove_runner(runner_ws)
+    await runner_ws.close()

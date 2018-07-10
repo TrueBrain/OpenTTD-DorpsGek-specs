@@ -1,0 +1,26 @@
+stages:
+  - build
+  - deploy
+
+docker-build:
+  stage: build
+  dorpsgek: build
+  only:
+    - master
+
+staging:
+  stage: deploy
+  dorpsgek: deploy
+  only:
+    - master
+  environment:
+    name: staging
+
+production:
+  stage: deploy
+  dorpsgek: deploy
+  only:
+    - master
+  when: manual
+  environment:
+    name: production
