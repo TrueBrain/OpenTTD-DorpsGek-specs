@@ -12,44 +12,13 @@ async def download_repository(repository, ref, clone_url, work_folder):
     repository_tarball = f"{work_folder}/artifact/source.tar.gz"
 
     if not os.path.exists(reference_folder):
-        await run_command(
-            "git",
-            "clone",
-            "--mirror",
-            clone_url,
-            reference_folder,
-        )
+        await run_command(f"git clone --mirror {clone_url} {reference_folder}")
     else:
-        await run_command(
-            "git",
-            "fetch",
-            "--all",
-            cwd=reference_folder,
-        )
+        await run_command(f"git fetch --all", cwd=reference_folder)
 
-    await run_command(
-        "git",
-        "clone",
-        "--reference",
-        reference_folder,
-        clone_url,
-        repository_folder,
-    )
-
-    await run_command(
-        "git",
-        "checkout",
-        ref,
-        cwd=repository_folder
-    )
-
-    await run_command(
-        "tar",
-        "zcf",
-        repository_tarball,
-        ".",
-        cwd=repository_folder,
-    )
+    await run_command(f"git clone --reference {reference_folder} {clone_url} {repository_folder}")
+    await run_command(f"git checkout {ref}", cwd=repository_folder)
+    await run_command(f"tar zcf {repository_tarball} .", cwd=repository_folder)
 
 
 async def get_dorpsgek_yml(github_api, repository, ref):

@@ -1,13 +1,14 @@
 import asyncio
+import shlex
 
 
 class CommandError(Exception):
     pass
 
 
-async def run_command(*command, cwd=None):
+async def run_command(command, cwd=None):
     process = await asyncio.create_subprocess_exec(
-        *command,
+        *shlex.split(command),
         stdout=asyncio.subprocess.PIPE,
         stderr=asyncio.subprocess.PIPE,
         cwd=cwd,
