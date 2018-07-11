@@ -1,4 +1,3 @@
-import itertools
 import logging
 import random
 
@@ -40,10 +39,5 @@ def remove_runner(runner_ws):
             pass
 
 
-def get_runner(*, environment=None):
-    if environment:
-        runners = _runners[environment]
-    else:
-        runners = list(itertools.chain.from_iterable(_runners.values()))
-
-    return random.choice(runners)
+def get_runner(environment):
+    return random.choice(_runners[environment])

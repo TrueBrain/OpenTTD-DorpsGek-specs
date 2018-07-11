@@ -2,9 +2,13 @@ import os
 import tempfile
 
 from dorpsgek_github.config import WORKING_FOLDER
-from dorpsgek_github.helpers.dorpsgek_yml import parse_dorpsgek_yml
-from dorpsgek_github.helpers.github import download_github_repository
+from dorpsgek_github.helpers.github import (
+    download_repository,
+    get_dorpsgek_yml,
+)
 from dorpsgek_github.processes.github import router as github
+from dorpsgek_github.scheduler.context import Context
+from dorpsgek_github.yaml.loader import load_yaml
 
 
 @github.register("push")
@@ -17,24 +21,26 @@ async def push(event, github_api):
     assert branch.startswith("refs/heads/")
     branch = branch[len("refs/heads/"):]
 
-    config = await parse_dorpsgek_yml(github_api, repository, ref)
+    raw_yml = await get_dorpsgek_yml(github_api, repository, ref)
+    config = load_yaml(raw_yml)
 
-    funcs_to_execute = []
+    jobs_to_execute = []
     for stage, jobs in config.items():
         for job in jobs:
-            if not job.is_valid_for(branch=branch):
+            if not job.match(branch=branch):
                 continue
-            if job.is_manual():
+            if job.manual:
                 continue
 
-            funcs_to_execute.append(job.get_coroutine())
+            jobs_to_execute.append(job)
 
     with tempfile.TemporaryDirectory("", "dorpsgek.%s." % repository.replace("/", "-"), WORKING_FOLDER) as work_folder:
         artifact_folder = f"{work_folder}/artifact"
-        job_id = os.path.basename(work_folder)
 
         os.mkdir(artifact_folder)
-        await download_github_repository(repository, ref, clone_url, work_folder)
+        await download_repository(repository, ref, clone_url, work_folder)
 
-        for func in funcs_to_execute:
-            await func(job_id, repository, ref)
+        context = Context(repository_name=repository, ref=ref, artifact_folder=artifact_folder)
+
+        for job in jobs_to_execute:
+            await job.executor(job, context)

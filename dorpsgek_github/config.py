@@ -14,5 +14,3 @@ with open(os.environ["GITHUB_APP_PRIVATE_KEY_FILE"]) as f:
     GITHUB_APP_PRIVATE_KEY = f.read()
 
 RUNNER_PORT = os.getenv("RUNNER_PORT", 8081)
-
-TESTING = os.getenv("TESTING", False)
