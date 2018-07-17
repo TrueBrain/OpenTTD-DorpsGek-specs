@@ -17,7 +17,6 @@ from dorpsgek_github.config import (
     GITHUB_APP_SECRET,
 )
 
-
 router = routing.Router()
 _github_tokens = {}
 _github_installations = {}

@@ -3,15 +3,10 @@ import shlex
 
 
 class CommandError(Exception):
-    pass
+    """Thrown if the exit code of the command was non-zero."""
 
 
 async def run_command(command, cwd=None):
-    """
-    Run a command async, and capture stdout/stderr.
-
-    stderr is given to the exception in case the return code was not zero.
-    """
     process = await asyncio.create_subprocess_exec(
         *shlex.split(command),
         stdout=asyncio.subprocess.PIPE,

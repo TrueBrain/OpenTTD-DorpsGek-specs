@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo "Running flake8 ..."
-flake8 dorpsgek_github
+flake8 dorpsgek_github dorpsgek_runner
 
 echo "Running test build for Docker image ..."
 docker build --pull --no-cache --force-rm -t dorpsgek/github:testrun . \

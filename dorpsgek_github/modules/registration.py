@@ -1,3 +1,5 @@
+import logging
+
 from dorpsgek_github.processes import runner
 from dorpsgek_github.processes.github import (
     add_installation,
@@ -7,7 +9,10 @@ from dorpsgek_github.processes.github import (
 from dorpsgek_github.processes.runner import (
     add_runner,
     remove_runner,
+    RunnerIsGone,
 )
+
+log = logging.getLogger(__name__)
 
 
 @github.register("installation", action="created")
@@ -44,3 +49,13 @@ async def register(event, runner_ws):
 async def close(event, runner_ws):
     remove_runner(runner_ws)
     await runner_ws.close()
+
+
+@runner.register("error")
+async def error(event, runner_ws):
+    if "command_does_not_exist" in event.data:
+        log.error("Runner does not support command '%s'", event.data["command_does_not_exist"])
+    else:
+        log.error("Unknown error received from runner")
+
+    raise RunnerIsGone

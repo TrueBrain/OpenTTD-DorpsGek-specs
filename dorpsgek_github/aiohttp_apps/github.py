@@ -8,6 +8,12 @@ log = logging.getLogger(__name__)
 
 
 async def github_handler(request):
+    """
+    Handles a request to the GitHub HTTP server.
+
+    We read the headers and body, and set it through to process.github for further processing.
+    """
+
     headers = request.headers
     data = await request.read()
 

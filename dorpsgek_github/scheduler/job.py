@@ -2,6 +2,8 @@ DEFAULT_ENVIRONMENT = "testing"
 
 
 class Job:
+    """Collected configuration for a job."""
+
     def __init__(self, name):
         self.name = name
         self.manual = False

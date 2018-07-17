@@ -7,6 +7,8 @@ from dorpsgek_github.helpers.subprocess import run_command
 
 
 async def download_repository(repository, ref, clone_url, work_folder):
+    """Download a GitHub repository, and compress it into a tarball."""
+
     reference_folder = f"{REFERENCE_REPOSITORY_FOLDER}/{repository}"
     repository_folder = f"{work_folder}/source"
     repository_tarball = f"{work_folder}/artifact/source.tar.gz"
@@ -22,6 +24,7 @@ async def download_repository(repository, ref, clone_url, work_folder):
 
 
 async def get_dorpsgek_yml(github_api, repository, ref):
+    """Get the .dorpsgek.yml from a repository."""
     try:
         response = await github_api.getitem(f"/repos/{repository}/contents/.dorpsgek.yml?ref={ref}")
     except gidgethub.BadRequest as err:

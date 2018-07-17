@@ -4,7 +4,6 @@ from dorpsgek_github.yaml.exceptions import (
 )
 from dorpsgek_github.yaml import registry as yaml
 
-
 _registry = {}
 
 
@@ -24,6 +23,7 @@ def register(command):
 
     This will become the executor for the command, and should be a coroutine.
     """
+
     if command in _registry:
         raise YAMLDuplicatedDorpsgekCommand(command)
 

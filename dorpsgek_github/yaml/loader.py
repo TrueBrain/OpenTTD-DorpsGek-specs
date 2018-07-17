@@ -16,7 +16,7 @@ from dorpsgek_github.yaml.keywords import (  # noqa
 )
 
 # Load the available dorpsgek commands
-from dorpsgek_github.yaml.keywords.dorpsgek_commands import (  # noqa
+from dorpsgek_github.yaml.dorpsgek_commands import (  # noqa
     build,
     deploy,
 )

@@ -3,7 +3,7 @@ import os
 REFERENCE_REPOSITORY_FOLDER = os.getenv("REFERENCE_REPOSITORY_FOLDER", "/var/lib/dorpsgek/reference")
 if not os.path.exists(REFERENCE_REPOSITORY_FOLDER):
     os.mkdir(REFERENCE_REPOSITORY_FOLDER)
-WORKING_FOLDER = os.getenv("WORKING_FOLDER", "/var/lib/dorpsgek/workdir")
+WORKING_FOLDER = os.getenv("WORKING_FOLDER", "/var/lib/dorpsgek-github/workdir")
 if not os.path.exists(WORKING_FOLDER):
     os.mkdir(WORKING_FOLDER)
 

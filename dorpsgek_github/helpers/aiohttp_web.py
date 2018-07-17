@@ -91,6 +91,12 @@ def prepare_app(app, *, host=None, port=None, path=None, sock=None,
 
 
 def run_apps(runners, print=print):
+    """
+    Run all apps at once.
+
+    This is part of aiohttp.web.run_app, in combination with prepare_app above.
+    """
+
     loop = asyncio.get_event_loop()
 
     try:
@@ -102,7 +108,7 @@ def run_apps(runners, print=print):
                 for runner in runners:
                     names = sorted(str(s.name) for s in runner.sites)
                     print("======== Running on {} ========".format(", ".join(names)))
-                print("\n(Press CTRL+C to quit)")
+                print("(Press CTRL+C to quit)")
             loop.run_forever()
         except (GracefulExit, KeyboardInterrupt):  # pragma: no cover
             pass
