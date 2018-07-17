@@ -53,7 +53,7 @@ def load_yaml(raw_yml):
                 try:
                     func(job, data)
                 except YAMLConfigurationError as err:
-                    errors.append("%s in job '{job_name}'" % err.args)
+                    errors.append(f"{err.args} in job '{job_name}'")
 
             else:
                 errors.append(f"unexpected '{config}' in job '{job_name}'")

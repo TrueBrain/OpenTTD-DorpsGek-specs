@@ -1,5 +1,4 @@
 import asyncio
-from collections import Iterable
 
 from aiohttp import helpers
 from aiohttp.log import access_logger
@@ -10,6 +9,7 @@ from aiohttp.web_runner import (
     TCPSite,
     UnixSite,
 )
+from collections import Iterable
 
 
 def prepare_app(app, *, host=None, port=None, path=None, sock=None,

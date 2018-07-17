@@ -42,7 +42,8 @@ async def execute_task(jobs_to_execute, repository_name, ref, clone_url):
 
     This creates a temporary directory, fetches the source code (and makes that an artifact), and runs all the jobs.
     """
-    prefix = "dorpsgek.%s." % repository_name.replace("/", "-")
+    repository_name_safe = repository_name.replace("/", "-")
+    prefix = f"dorpsgek.{repository_name_safe}."
     with tempfile.TemporaryDirectory("", prefix, WORKING_FOLDER) as work_folder:
         artifact_folder = f"{work_folder}/artifact"
 

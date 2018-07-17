@@ -12,7 +12,8 @@ def dorpsgek(job, data):
     """Order DorpsGek to execute certain commands."""
 
     if data not in _registry.keys():
-        raise YAMLConfigurationError(f"'dorpsgek' has value '{data}'; supported: %s" % ",".join(_registry.keys()))
+        supported_keys = ",".join(_registry.keys())
+        raise YAMLConfigurationError(f"'dorpsgek' has value '{data}'; supported: {supported_keys}")
 
     job.set_executor(_registry[data])
 

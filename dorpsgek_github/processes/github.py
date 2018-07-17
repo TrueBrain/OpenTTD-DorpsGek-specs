@@ -1,6 +1,6 @@
-import datetime
-
 import aiohttp
+import datetime
+import logging
 import jwt
 import time
 
@@ -17,6 +17,7 @@ from dorpsgek_github.config import (
     GITHUB_APP_SECRET,
 )
 
+log = logging.getLogger(__name__)
 router = routing.Router()
 _github_tokens = {}
 _github_installations = {}
@@ -142,7 +143,7 @@ async def startup():
         for installation in installations:
             _github_installations[installation["id"]] = None
 
-    print("Startup done; found %d installations" % len(_github_installations))
+    log.info("Startup done; found %d installations", len(_github_installations))
 
 
 def get_jwt():

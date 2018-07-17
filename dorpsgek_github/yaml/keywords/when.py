@@ -13,6 +13,7 @@ def when(job, data):
     """
 
     if data not in OPTIONS:
-        raise YAMLConfigurationError(f"'when' has value '{data}'; supported: %s" % ",".join(OPTIONS))
+        supported_options = ",".join(OPTIONS)
+        raise YAMLConfigurationError(f"'when' has value '{data}'; supported: {supported_options}")
 
     job.set_manual()
