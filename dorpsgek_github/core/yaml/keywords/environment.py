@@ -1,5 +1,5 @@
-from dorpsgek_github.yaml.exceptions import YAMLConfigurationError
-from dorpsgek_github.yaml import registry as yaml
+from dorpsgek_github.core.yaml import registry as yaml
+from dorpsgek_github.core.yaml.exceptions import YAMLConfigurationError
 
 
 @yaml.register("environment")

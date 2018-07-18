@@ -7,8 +7,8 @@ from aiohttp import (
 )
 from asyncio import CancelledError, Queue
 
-from dorpsgek_github.processes import runner
-from dorpsgek_github.processes.runner import RunnerIsGone
+from dorpsgek_github.core.processes import runner
+from dorpsgek_github.core.processes.runner import RunnerIsGone
 
 log = logging.getLogger(__name__)
 

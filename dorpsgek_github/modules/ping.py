@@ -1,5 +1,5 @@
-from dorpsgek_github.processes import runner
-from dorpsgek_github.processes.github import router as github
+from dorpsgek_github.core.processes import runner
+from dorpsgek_github.core.processes.github import router as github
 
 
 @github.register("ping")

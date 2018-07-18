@@ -4,12 +4,12 @@ import os
 import tempfile
 
 from dorpsgek_github.config import WORKING_FOLDER
-from dorpsgek_github.helpers.github import download_repository
-from dorpsgek_github.processes.runner import (
+from dorpsgek_github.core.helpers.github import download_repository
+from dorpsgek_github.core.processes.runner import (
     NoRunnerException,
     RunnerIsGone,
 )
-from dorpsgek_github.scheduler.context import Context
+from dorpsgek_github.core.scheduler.context import Context
 
 log = logging.getLogger(__name__)
 task_list = asyncio.Queue()

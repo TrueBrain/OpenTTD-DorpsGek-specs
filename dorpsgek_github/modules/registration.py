@@ -1,12 +1,12 @@
 import logging
 
-from dorpsgek_github.processes import runner
-from dorpsgek_github.processes.github import (
+from dorpsgek_github.core.processes import runner
+from dorpsgek_github.core.processes.github import (
     add_installation,
     remove_installation,
     router as github,
 )
-from dorpsgek_github.processes.runner import (
+from dorpsgek_github.core.processes.runner import (
     add_runner,
     remove_runner,
     RunnerIsGone,

@@ -1,4 +1,4 @@
-from dorpsgek_github.yaml.exceptions import YAMLDuplicatedKeyword
+from dorpsgek_github.core.yaml.exceptions import YAMLDuplicatedKeyword
 
 _keywords = {}
 

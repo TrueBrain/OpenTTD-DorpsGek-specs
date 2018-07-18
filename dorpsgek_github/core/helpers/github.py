@@ -3,7 +3,7 @@ import gidgethub
 import os
 
 from dorpsgek_github.config import REFERENCE_REPOSITORY_FOLDER
-from dorpsgek_github.helpers.subprocess import run_command
+from dorpsgek_github.core.helpers.subprocess import run_command
 
 
 async def download_repository(repository, ref, clone_url, work_folder):

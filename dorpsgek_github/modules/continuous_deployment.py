@@ -1,7 +1,7 @@
-from dorpsgek_github.helpers.github import get_dorpsgek_yml
-from dorpsgek_github.processes.github import router as github
-from dorpsgek_github.scheduler.scheduler import schedule_task
-from dorpsgek_github.yaml.loader import load_yaml
+from dorpsgek_github.core.helpers.github import get_dorpsgek_yml
+from dorpsgek_github.core.processes.github import router as github
+from dorpsgek_github.core.scheduler.scheduler import schedule_task
+from dorpsgek_github.core.yaml.loader import load_yaml
 
 
 @github.register("push")

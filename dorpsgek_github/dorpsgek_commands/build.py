@@ -1,5 +1,5 @@
-from dorpsgek_github.processes.runner import RunnerContext
-from dorpsgek_github.yaml.keywords import dorpsgek
+from dorpsgek_github.core.processes.runner import RunnerContext
+from dorpsgek_github.core.yaml.keywords import dorpsgek
 
 
 @dorpsgek.register("build")

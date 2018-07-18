@@ -3,20 +3,20 @@ import logging
 
 from aiohttp import web
 
-from dorpsgek_github.helpers.aiohttp_web import (
+from dorpsgek_github.core.helpers.aiohttp_web import (
     prepare_app,
     run_apps,
 )
-from dorpsgek_github.aiohttp_apps.github import (
+from dorpsgek_github.core.aiohttp_apps.github import (
     github_handler,
     github_startup,
 )
-from dorpsgek_github.aiohttp_apps.runner import runner_handler
+from dorpsgek_github.core.aiohttp_apps.runner import runner_handler
 from dorpsgek_github.config import (
     GITHUB_APP_PORT,
     RUNNER_PORT,
 )
-from dorpsgek_github.scheduler.scheduler import schedule_runner
+from dorpsgek_github.core.scheduler.scheduler import schedule_runner
 
 # List of modules that are enabled
 from dorpsgek_github.modules import (  # noqa

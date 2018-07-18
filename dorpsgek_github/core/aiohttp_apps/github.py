@@ -2,7 +2,7 @@ import http
 import logging
 
 from aiohttp import web
-from dorpsgek_github.processes import github
+from dorpsgek_github.core.processes import github
 
 log = logging.getLogger(__name__)
 

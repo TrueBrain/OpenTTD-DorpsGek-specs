@@ -1,14 +1,14 @@
 import yaml
 
-from dorpsgek_github.scheduler.job import Job
-from dorpsgek_github.yaml.exceptions import (
+from dorpsgek_github.core.scheduler.job import Job
+from dorpsgek_github.core.yaml.exceptions import (
     YAMLConfigurationError,
     YAMLConfigurationErrors,
 )
-from dorpsgek_github.yaml.registry import get_keyword_handler
+from dorpsgek_github.core.yaml.registry import get_keyword_handler
 
 # Load the available keywords
-from dorpsgek_github.yaml.keywords import (  # noqa
+from dorpsgek_github.core.yaml.keywords import (  # noqa
     dorpsgek,
     environment,
     only,
@@ -16,11 +16,10 @@ from dorpsgek_github.yaml.keywords import (  # noqa
 )
 
 # Load the available dorpsgek commands
-from dorpsgek_github.yaml.dorpsgek_commands import (  # noqa
+from dorpsgek_github.dorpsgek_commands import (  # noqa
     build,
     deploy,
 )
-
 
 RESERVED_JOB_WORDS = ["stages"]
 RESERVED_CONFIG_WORDS = ["stage"]

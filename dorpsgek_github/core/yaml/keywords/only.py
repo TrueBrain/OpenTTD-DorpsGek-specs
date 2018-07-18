@@ -1,4 +1,4 @@
-from dorpsgek_github.yaml import registry as yaml
+from dorpsgek_github.core.yaml import registry as yaml
 
 
 @yaml.register("only")
