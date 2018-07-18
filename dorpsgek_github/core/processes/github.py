@@ -11,11 +11,7 @@ from gidgethub import (
 from gidgethub.aiohttp import GitHubAPI
 from gidgethub.sansio import accept_format
 
-from dorpsgek_github.config import (
-    GITHUB_APP_ID,
-    GITHUB_APP_PRIVATE_KEY,
-    GITHUB_APP_SECRET,
-)
+from dorpsgek_github import config
 
 log = logging.getLogger(__name__)
 router = routing.Router()
@@ -95,7 +91,7 @@ async def process_request(headers, data):
     This is a very minimal wrapper to the Router dispatcher.
     """
 
-    event = sansio.Event.from_http(headers, data, secret=GITHUB_APP_SECRET)
+    event = sansio.Event.from_http(headers, data, secret=config.GITHUB_APP_SECRET)
 
     async with GitHubAPIContext() as github_api:
         await router.dispatch(event, github_api)
@@ -158,10 +154,10 @@ def get_jwt():
     data = {
         "iat": now,
         "exp": now + 60,
-        "iss": GITHUB_APP_ID,
+        "iss": config.GITHUB_APP_ID,
     }
 
-    return jwt.encode(data, key=GITHUB_APP_PRIVATE_KEY, algorithm="RS256").decode()
+    return jwt.encode(data, key=config.GITHUB_APP_PRIVATE_KEY, algorithm="RS256").decode()
 
 
 def add_installation(installation_id):

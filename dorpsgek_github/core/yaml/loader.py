@@ -7,20 +7,6 @@ from dorpsgek_github.core.yaml.exceptions import (
 )
 from dorpsgek_github.core.yaml.registry import get_keyword_handler
 
-# Load the available keywords
-from dorpsgek_github.core.yaml.keywords import (  # noqa
-    dorpsgek,
-    environment,
-    only,
-    when,
-)
-
-# Load the available dorpsgek commands
-from dorpsgek_github.dorpsgek_commands import (  # noqa
-    build,
-    deploy,
-)
-
 RESERVED_JOB_WORDS = ["stages"]
 RESERVED_CONFIG_WORDS = ["stage"]
 

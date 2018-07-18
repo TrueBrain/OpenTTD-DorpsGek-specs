@@ -3,7 +3,7 @@ import logging
 import os
 import tempfile
 
-from dorpsgek_github.config import WORKING_FOLDER
+from dorpsgek_github import config
 from dorpsgek_github.core.helpers.github import download_repository
 from dorpsgek_github.core.processes.runner import (
     NoRunnerException,
@@ -44,7 +44,7 @@ async def execute_task(jobs_to_execute, repository_name, ref, clone_url):
     """
     repository_name_safe = repository_name.replace("/", "-")
     prefix = f"dorpsgek.{repository_name_safe}."
-    with tempfile.TemporaryDirectory("", prefix, WORKING_FOLDER) as work_folder:
+    with tempfile.TemporaryDirectory("", prefix, config.WORKING_FOLDER) as work_folder:
         artifact_folder = f"{work_folder}/artifact"
 
         os.mkdir(artifact_folder)

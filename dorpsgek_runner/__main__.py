@@ -6,6 +6,7 @@ import logging
 from aiohttp import WSMsgType
 
 from dorpsgek_runner import config, runner
+from dorpsgek_runner.load_config import load_config
 from dorpsgek_runner.runner import RunnerEventDoesntExist
 
 log = logging.getLogger(__name__)
@@ -83,6 +84,7 @@ async def run_forever(address):
 
 def main():
     logging.basicConfig(level=logging.INFO)
+    load_config()
 
     for command in config.COMMANDS.split() + COMMANDS_ALWAYS_LOAD:
         importlib.import_module(f"dorpsgek_runner.commands.{command}")

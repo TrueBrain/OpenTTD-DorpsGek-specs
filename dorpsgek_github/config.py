@@ -1,16 +1,13 @@
-import os
+REFERENCE_REPOSITORY_FOLDER = "/var/lib/dorpsgek/reference"
+WORKING_FOLDER = "/var/lib/dorpsgek-github/workdir"
 
-REFERENCE_REPOSITORY_FOLDER = os.getenv("REFERENCE_REPOSITORY_FOLDER", "/var/lib/dorpsgek/reference")
-if not os.path.exists(REFERENCE_REPOSITORY_FOLDER):
-    os.mkdir(REFERENCE_REPOSITORY_FOLDER)
-WORKING_FOLDER = os.getenv("WORKING_FOLDER", "/var/lib/dorpsgek-github/workdir")
-if not os.path.exists(WORKING_FOLDER):
-    os.mkdir(WORKING_FOLDER)
+GITHUB_APP_ID = None
+GITHUB_APP_SECRET = None
+GITHUB_APP_PRIVATE_KEY_FILE = None
+GITHUB_APP_PRIVATE_KEY = None
 
-GITHUB_APP_ID = os.environ["GITHUB_APP_ID"]
-GITHUB_APP_SECRET = os.environ["GITHUB_APP_SECRET"]
-GITHUB_APP_PORT = os.getenv("GITHUB_APP_PORT", 8080)
-with open(os.environ["GITHUB_APP_PRIVATE_KEY_FILE"]) as f:
-    GITHUB_APP_PRIVATE_KEY = f.read()
+GITHUB_APP_PORT = 8080
+RUNNER_PORT = 8081
 
-RUNNER_PORT = os.getenv("RUNNER_PORT", 8081)
+MODULES = ""
+DORPSGEK_COMMANDS = ""
