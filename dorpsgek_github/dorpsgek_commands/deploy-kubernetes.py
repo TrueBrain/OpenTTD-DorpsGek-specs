@@ -8,11 +8,7 @@ async def deploy(job, context):
 
     async with RunnerContext(environment=job.environment) as runner_ws:
         await runner_ws.send_request("job.start")
-        await runner_ws.send_request("docker.pull", {
-            "name": context.repository_name,
-            "tag": context.ref,
-        })
-        await runner_ws.send_request("docker.run", {
+        await runner_ws.send_request("kubernetes.deploy", {
             "name": context.repository_name,
             "tag": context.ref,
         })
